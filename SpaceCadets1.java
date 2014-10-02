@@ -1,5 +1,3 @@
-package SpaceCadets1;
-
 import java.awt.EventQueue;
 import java.io.*;
 import java.io.IOException;
@@ -106,7 +104,7 @@ public class SpaceCadets1 {
                             if (image == null) {
                                 throw new IllegalArgumentException(url + " is not a valid image.");
                             }
-                            final String ascii = convert(image);
+                            String ascii = convert(image);
 
                             //And now we return to my own code
                             int character = 0;
