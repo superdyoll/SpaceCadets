@@ -113,7 +113,6 @@ public class SpaceCadets1 {
                                     System.out.print(ascii.charAt(character));
                                     character++;
                                 }
-                                System.out.println();
                             }
 
                             //This was a boring way of displaying just the image before but now i have ascii
