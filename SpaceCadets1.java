@@ -87,33 +87,30 @@ public class SpaceCadets1 {
 
                 String ImageURL = "http://widgets.ecs.soton.ac.uk/image.php?id=person_" + src + "&maxw=250&maxh=300&corners=0&edge=1&checksum=375eaa4f900cffe15474636dd2276f36";
 
-                EventQueue.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                        }
-                        try {
-                            String path = ImageURL;
-                            System.out.println("Get Image from " + path);
-                            URL url = new URL(path);
-                            final BufferedImage image = ImageIO.read(url);
-                            
-                            //I have used a ASCII Converter created by shmert on github
-                            if (image == null) {
-                                throw new IllegalArgumentException(url + " is not a valid image.");
-                            }
-                            String ascii = convert(image);
 
-                            //And now we return to my own code
-                            int character = 0;
-                            for (int y = 0; y < image.getHeight() - 1; y++) {
-                                for (int x = 0; x <= image.getWidth(); x++) {
-                                    System.out.print(ascii.charAt(character));
-                                    character++;
-                                }
-                            }
+                try {
+					//Turn image url string into URL object
+                    System.out.println("Get Image from " + ImageURL);
+                    URL url = new URL(ImageURL);
+					
+					//Create a Buffered Image Object
+                    final BufferedImage Profile = ImageIO.read(url);
+                            
+                    //I have used a ASCII Converter created by shmert on github
+                    if (Profile == null) {
+                        throw new IllegalArgumentException(url + " is not a valid image.");
+                    }
+                    String ascii = convert(Profile);
+
+                    //And now we return to my own code
+                    int character = 0;
+					//Cycle through the characters
+                    for (int y = 0; y < Profile.getHeight() - 1; y++) {
+                        for (int x = 0; x <= Profile.getWidth(); x++) {
+                            System.out.print(ascii.charAt(character));
+                            character++;
+                        }
+                    }
 
                             //This was a boring way of displaying just the image before but now i have ascii
                             /*System.out.println("Load image into frame...");
@@ -124,10 +121,9 @@ public class SpaceCadets1 {
                              f.pack();
                              f.setLocation(200, 200);
                              f.setVisible(true);*/
-                        } catch (IOException | IllegalArgumentException exp) {
-                        }
-                    }
-                });
+                } catch (IOException | IllegalArgumentException exp) {
+                }
+                    
             }
         }
         in.close();
